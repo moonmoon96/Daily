@@ -33,6 +33,27 @@ export default function Header () {
                             </div>
                         </div>
                     </div>
+                </div>              
+                <div className="header-bottom">
+                    <nav className="header-bottom-nav">
+                        <ul className="header-bottom-nav-ul">
+                            <li className="header-bottom-nav-li">
+                                <a href="/">
+                                    <span className="active">홈</span>
+                                </a>
+                            </li>
+                            <li className="header-bottom-nav-li cube">
+                                <a href="/">
+                                    <span className="">큐브</span>
+                                </a>
+                            </li>
+                            <li className="header-bottom-nav-li starforce">
+                                <a href="/">
+                                    <span className="">스타포스</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </header>
         </>
