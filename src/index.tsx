@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-import Daily from './daily';
-import './css/daily.css';
+import Daily from './Daily';
+import './css/Daily.css';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

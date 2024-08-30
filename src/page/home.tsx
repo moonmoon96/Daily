@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { ocid } from "../api/character/ocid"
-import { basic } from "../api/character/basic";
-import { BasicData } from "../api/character/types";
+import { ocid } from "../api/character/Ocid"
+import { basic } from "../api/character/Basic";
+import { BasicData } from "../api/character/Types";
 
 function Home () {
 
