@@ -1,4 +1,41 @@
-export default function Header () {
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store/Store";
+import { BasicData } from "../api/character/Types";
+import { fetchOcid } from "../store/OcidSlice";
+import { fetchBasicData } from "../store/BasicSlice";
+import SearchBox from "./SearchBox";
+import SearchButton from "./SearchButton";
+
+export default function Header () {    
+    
+    const [characterName, setCharacterName] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
+    const ocid = useSelector((state: RootState) => state.ocid.value);
+    const basicData = useSelector((state: RootState) => state.basic.data) as BasicData | null;
+    const ocidStatus = useSelector((state: RootState) => state.ocid.status);
+    const basicStatus = useSelector((state: RootState) => state.basic.status);
+
+    const clickOcid = async() => {
+        if(characterName) {
+            try {
+                await dispatch(fetchOcid(characterName));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
+    const doEnter = () => {
+        clickOcid();
+    }
+    
+    useEffect(() => {
+        if (ocid && ocidStatus === 'succeeded') {
+            dispatch(fetchBasicData(ocid));
+        }
+    }, [ocid, ocidStatus, dispatch]);
+
     return(
         <>
             <header className="header">
@@ -11,13 +48,19 @@ export default function Header () {
                         <div className="header-searchbox">
                             <div className="inner"></div>
                             <div className="header-searchform">
-                                <input
-                                    className="header-searchinput" 
+                                <SearchBox
+                                    className="header-searchinput"
+                                    value={characterName} 
                                     maxLength={20}
                                     placeholder="캐릭터 닉네임을 입력해주세요"
                                     autoComplete="off"
+                                    onChange={(e) => setCharacterName(e.target.value)}
+                                    onEnter={doEnter}
                                 />
-                                <button className="header-searchbutton">
+                                <SearchButton
+                                    onClick={clickOcid} 
+                                    className="header-searchbutton"
+                                >
                                     <svg 
                                         width="12" 
                                         height="12" 
@@ -29,7 +72,7 @@ export default function Header () {
                                             fill="white" 
                                         />
                                     </svg>
-                                </button>
+                                </SearchButton>
                             </div>
                         </div>
                     </div>
