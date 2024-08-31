@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 100%;
+    font-family: Pretendard, -apple-system, Segoe UI, Roboto, Helvetica Neue, "sans-serif";
 }
 
 li, ul {
@@ -11,6 +15,18 @@ li, ul {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+input:focus {
+    outline: none;
+  }
+
+img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .daily{
@@ -163,6 +179,11 @@ a {
     font-weight: 600;
     line-height: 14px;
     color: rgb(207, 209, 215);
+    transition: font-size 0.3s ease;
+}
+
+.header-bottom-nav-li:hover{
+    font-size: 16px;
 }
 
 .header-bottom-nav-li > a {
@@ -218,6 +239,83 @@ a {
     flex: 1 1 0%;
 }
 
+.home-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px 20px;
+}
+
+.home-banner{
+    position: absolute;
+    width: 100%;
+    height: 230px;
+    top: 0px;
+    left: 0px; 
+}
+
+.home-bg{
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-section > a {
+    z-index: 2;
+    font-size: 0px;
+    height: 40px;
+}
+
+.home-section > a > img.logo{
+    width: 192px;
+    height: auto;
+}
+
+.home-search{
+    z-index: 3;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    padding: 0px 16px;
+    margin-top: 24px;
+}
+
+.home-searchform{
+    z-index: 2;
+    border: 1px solid rgb(92, 184, 92);
+    background: rgb(22, 22, 24);
+    border-radius: 4px;
+    padding: 3px 11px;
+    display: flex;
+    align-items: center;
+    max-width: 210px;
+}
+
+.home-searchform > input:placeholder-shown{
+    text-overflow: ellipsis;
+}
+
+.home-searchinput{
+    background: none;
+    border: none;
+    padding: 0px;
+    width: 154px;
+    flex: 1 1 0%;
+    color: rgb(255, 255, 255);
+}
+
+.home-searchbutton{
+    width: 36px;
+    height: 36px;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
 .footer{
     background: rgb(240, 240, 240);
     display: flex;
@@ -265,6 +363,75 @@ a {
     line-height: 16px;
 }
 
+.home-main{
+    background: rgb(245, 245, 245);
+    width: 100%;
+    max-width: 1120px;
+    padding: 0px 16px;
+    margin: 0px auto;
+    z-index: 1;
+}
+
+.home-main-form{
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.home-main-section{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.home-main-article{
+    border: 1px solid rgb(233, 234, 237);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.home-article-h3{
+    display: flex;
+    padding: 11px 16px;
+    justify-content: space-between;
+    background: rgb(255, 255, 255);
+    align-items: center;
+}
+
+.home-article-h3 div {
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.home-article-h3 > div > b {
+    margin-right: 4px;
+    font-weight: 600;
+}
+
+.home-article-more{
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    background: rgb(255, 255, 255);
+}
+
+.home-article-more > a {
+    padding: 7px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border-radius: 28px;
+    border: 1px solid rgb(233, 234, 237);
+}
 
 @media (min-width: 768px) {
     .header-top-content {
@@ -279,6 +446,43 @@ a {
         align-items: center;
         gap: 20px;
         padding: 8px;
+    }
+
+    .home-section{
+        padding: 80px 20px 0px;
+        height: auto;
+    }
+
+    .home-banner{
+        height: 520px;
+    }
+
+    .home-bg{
+        display: unset;
+    }
+
+    .home-section > a {
+        height: 50px;
+    }
+
+    .home-section > a > img.logo{
+        width: 242px;
+    }
+    
+    .home-searchform{
+            max-width: 500px;
+    }
+
+    .home-searchinput{
+        width: 304px;
+    }
+
+    .home-main{
+        padding: 0px 20px;
+    }
+
+    .home-main-section{
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 

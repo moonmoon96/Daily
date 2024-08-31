@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store/Store";
-import { BasicData } from "../api/character/Types";
 import { fetchOcid } from "../store/OcidSlice";
 import { fetchBasicData } from "../store/BasicSlice";
 import SearchBox from "./SearchBox";
@@ -12,9 +11,7 @@ export default function Header () {
     const [characterName, setCharacterName] = useState("");
     const dispatch = useDispatch<AppDispatch>();
     const ocid = useSelector((state: RootState) => state.ocid.value);
-    const basicData = useSelector((state: RootState) => state.basic.data) as BasicData | null;
     const ocidStatus = useSelector((state: RootState) => state.ocid.status);
-    const basicStatus = useSelector((state: RootState) => state.basic.status);
 
     const clickOcid = async() => {
         if(characterName) {
