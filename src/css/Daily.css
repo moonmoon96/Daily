@@ -452,6 +452,7 @@ img {
     max-width: 1120px;
     padding: 0px 16px;
     margin: 0px auto;
+    margin-top: auto;
     z-index: 1;
 }
 
@@ -723,5 +724,9 @@ img {
     .header-top-content {
         width: 1080px;
         padding: 0px;
+    }
+
+    .home-main{
+        border-radius: 16px;
     }
 }
