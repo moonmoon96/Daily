@@ -1,6 +1,6 @@
 import { baseDate } from "../../utils/Date";
 
-export async function overall(ocid : string) {
+export async function overall() {
     try {
         const apiKey = process.env.REACT_APP_API_KEY;
         const urlString = "https://open.api.nexon.com/maplestory/v1/ranking/overall?date=" + baseDate + "&world_type=0"
@@ -15,8 +15,9 @@ export async function overall(ocid : string) {
                 "x-nxopen-api-key": apiKey
             }
         });
-        const overall_data = await response.json();
-        console.log(overall_data);
+        const result = await response.json();
+
+        const overall_data = result.ranking;
 
         return overall_data;
 
