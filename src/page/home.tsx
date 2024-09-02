@@ -7,11 +7,16 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import SearchBox from "../component/SearchBox";
 import SearchButton from "../component/SearchButton";
-import todayDate from "../utils/Date";
+import banner from "../css/img/banner.jpg";
+import { overall } from "../api/rank/overall";
+import { RankData } from "../api/character/Types";
+import { todayDate } from "../utils/Date";
 
 function Home () {
 
     const [characterName, setCharacterName] = useState("");
+    const [rank, setRank] = useState<RankData[]>([]);
+    
     const dispatch = useDispatch<AppDispatch>();
     const ocid = useSelector((state: RootState) => state.ocid.value);
     const ocidStatus = useSelector((state: RootState) => state.ocid.status);
@@ -36,6 +41,20 @@ function Home () {
         }
     }, [ocid, ocidStatus, dispatch]);
 
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const result = await overall(); 
+    //             setRank(result);
+    //             console.log(rank);
+    //         } catch (err) {
+    //             console.log(err)
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, []);
+
     return (
         <>
             <div className="daily">
@@ -43,7 +62,8 @@ function Home () {
                 <div className="content">
                     <section className="home-section">
                         <div className="home-banner">
-                            <img className="home-bg"></img>
+                            <img className="home-bg" alt="banner" src={banner} />
+                            <img className="home-bg-mobile" alt="banner" src={banner} />
                         </div>
                         <a href="/">
                             <img className="logo" alt="logo"></img>
@@ -77,6 +97,27 @@ function Home () {
                                 </SearchButton>
                             </div>
                         </div>
+                        <article className="home-favorite">
+                            <div className="home-favorite-box ">
+                                <div className="home-favorite-box-title">
+                                    <span>즐겨찾기</span>
+                                    <img 
+                                        src="https://cdn.dak.gg/maple/images/icon/ico-arrow-right-white.svg" 
+                                        alt="move" 
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div className="home-favorite-box-body">
+                                    <div className="home-favorite-box-body-content">
+                                        <div className="home-favorite-content-left">
+                                            <div className="home-favorite-content-left-num">1</div>
+                                            <a><div>캐릭터 이름</div></a>
+                                        </div>
+                                        <span className="home-favorite-content-right">전투력</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
                     </section>
                     <main className="home-main">
                         <div className="home-main-form">
@@ -99,6 +140,46 @@ function Home () {
                                             </a>
                                         </div>
                                     </h3>
+                                    <div className="home-article-table">
+                                        <div className="home-article-table-th center">#</div>
+                                        <div className="home-article-table-th">캐릭터</div>
+                                        <div className="home-article-table-th center">레벨</div>
+                                        <div className="home-article-table-th center">직업</div>
+                                        <div className="home-article-table-th center">길드</div>
+                                        {rank.slice(0,5).map((a, i) => {
+                                            let rankingClass;
+                                            if (i === 0) {
+                                                rankingClass = "first";
+                                            } else if (i === 1) {
+                                                rankingClass = "second";
+                                            } else if (i === 2) {
+                                                rankingClass = "third";
+                                            } else {
+                                                rankingClass = "etc";
+                                            }
+
+                                            return (
+                                                <>
+                                                    <div className="home-article-table-td" key={i}>
+                                                        <div className={rankingClass}>{a.ranking}</div>
+                                                    </div>
+                                                    <div className="home-article-table-td">
+                                                        <div className="name">
+                                                            {/* <img alt="world"></img> */}
+                                                            <a><span>{a.character_name}</span></a>
+                                                        </div>
+                                                    </div>
+                                                    <div className="home-article-table-td center">{a.character_level}</div>
+                                                    <div className="home-article-table-td">
+                                                        <span>{a.sub_class_name || a.class_name}</span>
+                                                    </div>
+                                                    <div className="home-article-table-td responsive">
+                                                        <a>{a.character_guildname || 'X'}</a>
+                                                    </div>
+                                                </>
+                                            );
+                                        })}
+                                    </div>
                                 </article>
                             </section>
                         </div>

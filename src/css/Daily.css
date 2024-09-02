@@ -261,6 +261,12 @@ img {
     object-fit: cover;
 }
 
+.home-bg-mobile{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .home-section > a {
     z-index: 2;
     font-size: 0px;
@@ -314,6 +320,83 @@ img {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+}
+
+.home-favorite{
+    width: 100%;
+    z-index: 2;
+    padding: 16px;
+    background: rgb(22, 22, 24);
+    margin-top: 24px;
+}
+
+.home-favorite-box{
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.098);
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.home-favorite-box-title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(22, 22, 24);
+    padding-left: 12px;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.05);
+}
+
+.home-favorite-box-title > span{
+    color: rgb(255, 255, 255);
+    font-size: 12px;
+}
+
+.home-favorite-box-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.home-favorite-box-body *{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+}
+
+.home-favorite-box-body-content{
+    display: flex;
+    padding: 0px 12px;
+    height: 28px;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.098);
+}
+
+.home-favorite-content-left{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    color: rgb(207, 209, 215);
+}
+
+.home-favorite-content-left-num{
+    display: flex;
+    align-items: center;
+    width: 14px;
+    height: 14px;
+    background: rgb(44, 65, 44);
+    border-radius: 2px;
+    justify-content: center;
+    font-size: 11px !important;
+}
+
+.home-favorite-content-right{
+    color: rgb(132, 137, 153);
+    display: flex;
+    align-items: center;
 }
 
 .footer{
@@ -584,6 +667,16 @@ img {
 
     .home-bg{
         display: unset;
+        object-fit: cover;
+        max-width: 4000px;
+        max-height: 550px;
+        min-height: 550px;
+        width: 100%;
+        height: auto;
+    }
+
+    .home-bg-mobile{
+        display: none;
     }
 
     .home-section > a {
@@ -600,6 +693,12 @@ img {
 
     .home-searchinput{
         width: 304px;
+    }
+
+    .home-favorite{
+        padding: 0px;
+        background: rgba(22, 22, 24, 0.4);
+        width: 500px;
     }
 
     .home-main{

@@ -13,3 +13,14 @@ export interface BasicData {
     character_level: number;
     liberation_quest_clear_flag: string;
 }
+
+export interface RankData {
+    date: string;
+    world_name: string;
+    ranking: number;
+    character_name: string;
+    character_level: number;
+    class_name: string;
+    sub_class_name: string;
+    character_guildname: string;
+}
