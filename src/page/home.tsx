@@ -7,6 +7,7 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import SearchBox from "../component/SearchBox";
 import SearchButton from "../component/SearchButton";
+import todayDate from "../utils/Date";
 
 function Home () {
 
@@ -83,7 +84,7 @@ function Home () {
                                 <article className="home-main-article">
                                     <h3 className="home-article-h3">
                                         <div>
-                                            <span>오늘 날짜</span>
+                                            <span>{todayDate} &nbsp;</span>
                                             <b>일반 월드</b>
                                             랭킹
                                         </div>
