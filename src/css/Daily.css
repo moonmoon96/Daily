@@ -642,6 +642,51 @@ img {
     white-space: nowrap;
 }
 
+.home-update-table{
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    background: rgb(255, 255, 255);
+    border-top: 1px solid rgb(233, 234, 237);
+    align-items: center;
+}
+
+.home-update-badge{
+    border-bottom: 1px solid rgb(233, 234, 237);
+    padding: 11px 16px 10px;
+}
+
+.badge-text{
+    width: 70px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 6px;
+    margin: 0px auto;
+    color: rgb(92, 184, 92);
+    background: rgba(92, 184, 92, 0.1);
+}
+
+.home-update-title{
+    padding: 13px 16px 12px 0px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-bottom: 1px solid rgb(233, 234, 237);
+}
+
+.home-update-title span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media (min-width: 768px) {
     .header-top-content {
         flex-direction: row;
