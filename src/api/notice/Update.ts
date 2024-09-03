@@ -1,4 +1,4 @@
-export async function update() {
+export async function updateData() {
     try {
         const apiKey = process.env.REACT_APP_API_KEY;
         const urlString = "https://open.api.nexon.com/maplestory/v1/notice-update"
@@ -13,8 +13,9 @@ export async function update() {
                 "x-nxopen-api-key": apiKey
             }
         });
-        const update_data = await response.json();
-        console.log(update_data);
+        const result = await response.json();
+        
+        const update_data = result.update_notice;
 
         return update_data;
 

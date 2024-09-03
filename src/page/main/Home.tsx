@@ -4,6 +4,7 @@ import Search from "./Search";
 import Favorite from "./Favorite";
 import Rank from "./Rank";
 import banner from "../../css/img/banner.jpg";
+import Update from "./Update";
 
 function Home () {
 
@@ -24,13 +25,14 @@ function Home () {
                             <Search />
                         </div>
                         <article className="home-favorite">
-                            <Favorite />
+                            <Favorite />    
                         </article>
                     </section>
                     <main className="home-main">
                         <div className="home-main-form">
                             <section className="home-main-section">
                                 <Rank />
+                                <Update />
                             </section>
                         </div>
                     </main>

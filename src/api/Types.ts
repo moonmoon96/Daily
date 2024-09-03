@@ -24,3 +24,9 @@ export interface RankData {
     sub_class_name: string;
     character_guildname: string;
 }
+
+export interface UpdateData {
+    title: string;
+    notice_id: string;
+    url: string;
+}
