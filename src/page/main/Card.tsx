@@ -12,9 +12,25 @@ export default function Card() {
             const rect = ref.current.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const rotateY = -1 / 5 * x + 20;
-            const rotateX = 4 / 30 * y - 19;
-            // console.log(`MouseMove - x: ${x}, y: ${y}, rotateX: ${rotateX}, rotateY: ${rotateY}`);
+
+            const viewportWidth = window.innerWidth;
+
+            let rotateX, rotateY;
+            
+            const centerX = viewportWidth / 2;
+            const normalizedX = (x - centerX) / centerX;
+    
+            if (viewportWidth < 768) {
+                rotateY = normalizedX * -3; 
+                rotateX = 2 / 30 * y - 10;
+            } else if (viewportWidth >= 768 && viewportWidth < 1144) {
+                rotateY = normalizedX * -1;
+                rotateX = 3 / 30 * y - 10;
+            } else {
+                rotateY = -1 / 5 * x + 20;
+                rotateX = 4 / 30 * y - 19;
+            }
+            //console.log(`MouseMove - x: ${x}, y: ${y}`);
             ref.current.style.transform = `perspective(400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         }
     };
