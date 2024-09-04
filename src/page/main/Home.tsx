@@ -2,6 +2,7 @@ import Header from "../../component/Header";
 import Footer from "../../component/Footer";
 import Search from "./Search";
 import Favorite from "./Favorite";
+import Card from "./Card";
 import Rank from "./Rank";
 import banner from "../../css/img/banner.jpg";
 import Update from "./Update";
@@ -19,7 +20,7 @@ function Home () {
                             <img className="home-bg-mobile" alt="banner" src={banner} />
                         </div>
                         <a href="/">
-                            <img className="logo" alt="logo"></img>
+                            <img className="logo" alt="logo" />
                         </a>
                         <div className="home-search">
                             <Search />
@@ -30,6 +31,7 @@ function Home () {
                     </section>
                     <main className="home-main">
                         <div className="home-main-form">
+                            <Card />
                             <section className="home-main-section">
                                 <Rank />
                                 <Update />

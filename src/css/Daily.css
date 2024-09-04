@@ -452,7 +452,6 @@ img {
     max-width: 1120px;
     padding: 0px 16px;
     margin: 0px auto;
-    margin-top: auto;
     z-index: 1;
 }
 
@@ -461,6 +460,179 @@ img {
     display: flex;
     flex-direction: column;
     gap: 24px;
+}
+
+.home-main-first{
+    width: 100%;
+    display: grid;
+    gap: 20px;
+}
+
+.dojang{
+    border: 1px solid rgb(246, 167, 48);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+}
+
+.theseed{
+    border: 1px solid rgb(92, 184, 92);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+}
+
+.achievement{
+    border: 1px solid rgb(83, 147, 202);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+}
+
+.union{
+    border: 1px solid rgb(109, 98, 161);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgb(255, 255, 255);
+}
+
+.dojang > header{
+    width: 100%;
+    padding: 14px 0px;
+    border-bottom: 1px solid rgb(233, 234, 237);
+}
+
+.dojang > header > h2{
+    text-align: center;
+    font-weight: 600;
+    color: rgb(246, 167, 48);
+}
+
+.theseed > header{
+    width: 100%;
+    padding: 14px 0px;
+    border-bottom: 1px solid rgb(233, 234, 237);
+}
+
+.theseed > header > h2{
+    text-align: center;
+    font-weight: 600;
+    color: rgb(92, 184, 92);
+}
+
+.achievement > header{
+    width: 100%;
+    padding: 14px 0px;
+    border-bottom: 1px solid rgb(233, 234, 237);
+}
+
+.achievement > header > h2{
+    text-align: center;
+    font-weight: 600;
+    color: rgb(83, 147, 202);
+}
+
+.union > header{
+    width: 100%;
+    padding: 14px 0px;
+    border-bottom: 1px solid rgb(233, 234, 237);
+}
+
+.union > header > h2{
+    text-align: center;
+    font-weight: 600;
+    color: rgb(109, 98, 161);
+}
+
+.dojang-main{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    column-gap: 4px;
+}
+
+.dojang > .more{
+    display: block;
+    width: 100%;
+    padding: 13px 0px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgb(246, 167, 48);
+}
+
+.theseed > .more{
+    display: block;
+    width: 100%;
+    padding: 13px 0px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgb(92, 184, 92);
+}
+
+.achievement > .more{
+    display: block;
+    width: 100%;
+    padding: 13px 0px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgb(83, 147, 202);
+}
+
+.union > .more{
+    display: block;
+    width: 100%;
+    padding: 13px 0px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    background: rgb(109, 98, 161);
+}
+
+.dojang-main > img.character-image{
+    width: 72px;
+    height: 72px;
+}
+
+.dojang-main > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.dojang-main > div > .level{
+    display: flex;
+    align-items: center;
+    column-gap: 2px;
+    margin-bottom: 8px;
+}
+
+.dojang-main > div > img.character-image{
+    display: none;
+    width: 96px;
+    height: 96px;
+}
+
+.dojang-main > div > .info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.dojang-main > div > .info > .player{
+    display: flex;
+    column-gap: 2px;
+    align-items: center;
+}
+
+.dojang-main > div > .info > .player > span{
+    font-size: 12px;
+}
+
+.dojang-main > div > .info > .player > span.name{
+    font-weight: 600;
 }
 
 .home-main-section{
@@ -704,7 +876,7 @@ img {
 
     .home-section{
         padding: 80px 20px 0px;
-        height: auto;
+        height: 550px;
     }
 
     .home-banner{
@@ -751,6 +923,40 @@ img {
         padding: 0px 20px;
     }
 
+    .home-main-first{
+        grid-template-columns: 2fr 2fr;
+    }
+
+    .dojang-main{
+        flex-direction: column;
+    }
+
+    .dojang-main > img.character-image{
+        display: none;
+    }
+
+    .dojang-main > div{
+        align-items: center;
+        row-gap: 6px;
+    }
+    
+    .dojang-main > div > .level{
+        order: 3;
+        flex-direction: column;
+        row-gap: 6px;
+    }
+
+    .dojang-main > div > img.character-image{
+        display: inline;
+        order: 2;
+    }
+
+    .dojang-main > div > .info{
+        flex-direction: row;
+        align-items: center;
+        order: 1;
+    }
+
     .home-main-section{
         grid-template-columns: repeat(2, 1fr);
     }
@@ -773,5 +979,9 @@ img {
 
     .home-main{
         border-radius: 16px;
+    }
+
+    .home-main-first{
+        grid-template-columns: repeat(4, 1fr);
     }
 }
