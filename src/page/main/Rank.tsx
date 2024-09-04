@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { overall } from "../../api/rank/overall";
+import { overall } from "../../api/rank/Overall";
 import { RankData } from "../../api/Types";
 import { todayDate } from "../../utils/Date";
 

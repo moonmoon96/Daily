@@ -608,6 +608,23 @@ img {
     margin-bottom: 8px;
 }
 
+.dojnag-main > div > .level > div{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dojnag-main > div > .level > div > b{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.dojnag-main > div > .level > div > span{
+    font-size: 12px;
+    font-weight: 400;
+    color: rgb(132, 137, 153);
+}
+
 .dojang-main > div > img.character-image{
     display: none;
     width: 96px;
@@ -944,6 +961,17 @@ img {
         order: 3;
         flex-direction: column;
         row-gap: 6px;
+    }
+
+    .dojnag-main > div > .level > div > b{
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    .dojnag-main > div > .level > div > span{
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 13px;
     }
 
     .dojang-main > div > img.character-image{

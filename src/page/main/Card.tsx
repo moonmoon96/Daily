@@ -1,4 +1,11 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { ocid } from "../../api/character/Ocid";
+import { dojang } from "../../api/rank/Dojang";
+import { DojangData } from "../../api/Types";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store/Store";
+import { fetchOcid } from "../../store/OcidSlice";
+import { basic } from "../../api/character/Basic";
 
 export default function Card() {
 
@@ -16,12 +23,12 @@ export default function Card() {
             const viewportWidth = window.innerWidth;
 
             let rotateX, rotateY;
-            
+
             const centerX = viewportWidth / 2;
             const normalizedX = (x - centerX) / centerX;
-    
+
             if (viewportWidth < 768) {
-                rotateY = normalizedX * -3; 
+                rotateY = normalizedX * -3;
                 rotateX = 2 / 30 * y - 10;
             } else if (viewportWidth >= 768 && viewportWidth < 1144) {
                 rotateY = normalizedX * -1;
@@ -41,40 +48,84 @@ export default function Card() {
         }
     };
 
+    const [dojangData, setDojangData] = useState<DojangData[]>([]);
+    const [characterImage, setCharacterImage] = useState();
+
+    const dispatch = useDispatch<AppDispatch>();
+    const ocid = useSelector((state: RootState) => state.ocid.value);
+    const ocidStatus = useSelector((state: RootState) => state.ocid.status);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true); // 데이터 로딩 시작
+            try {
+                const result = await dojang();
+                setDojangData(result);
+
+                const character_name = result[0]?.character_name; // data가 존재하는지 체크
+
+                if (character_name) {
+                    try {
+                        await dispatch(fetchOcid(character_name));
+                        if (ocid && ocidStatus === 'succeeded') {
+                            const basic_data = await basic(ocid);
+                            setCharacterImage(basic_data.character_image);
+                            console.log(characterImage);
+                        }
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+            } catch (err) {
+                console.log(err);
+            } finally {
+                setLoading(false); // 데이터 로딩 완료
+            }
+        }
+
+        fetchData();
+    }, []);
+
     return (
-            <div>
-                <section className="home-main-first">
+        <div>
+            <section className="home-main-first">
                 <section
                     className="container dojang"
                     ref={dojangRef}
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, dojangRef)}
                     onMouseLeave={() => MouseLeave(dojangRef)}
                 >
-                        <header>
-                            <h2>이번 주 무릉도장 1위</h2>
-                        </header>
-                        <div className="dojang-main">
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div>
+                    <header>
+                        <h2>이번 주 무릉도장 1위</h2>
+                    </header>
+                    <div className="dojang-main">
+                        <img
+                            className="character-image"
+                            src={characterImage}
+                            alt="character"
+                            loading="lazy"
+                        />
+                        <div>
                             <div className="level">
-
+                                <div>
+                                    <b>{dojangData[0].dojang_floor}층</b>
+                                </div>
+                                <span>{dojangData[0].dojang_time_record}</span>
                             </div>
                             <img
                                 className="character-image"
+                                src={characterImage}
                                 alt="character"
                                 loading="lazy"
                             />
                             <div className="info">
                                 <div className="player">
-                                    <span className="name"></span>
-                                    <span className="level">Lv. </span>
+                                    <span className="name">{dojangData[0].character_name}</span>
+                                    <span className="level">Lv. {dojangData[0].character_level}</span>
                                 </div>
                                 <div className="job">
-
+                                    {dojangData[0].character_class}
                                 </div>
                             </div>
                         </div>
@@ -87,16 +138,16 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, theseedRef)}
                     onMouseLeave={() => MouseLeave(theseedRef)}
                 >
-                        <header>
-                            <h2>이번 주 더 시드 1위</h2>
-                        </header>
-                        <div className="dojang-main">
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div>
+                    <header>
+                        <h2>이번 주 더 시드 1위</h2>
+                    </header>
+                    <div className="dojang-main">
+                        <img
+                            className="character-image"
+                            alt="character"
+                            loading="lazy"
+                        />
+                        <div>
                             <div className="level">
 
                             </div>
@@ -124,16 +175,16 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, achievementRef)}
                     onMouseLeave={() => MouseLeave(achievementRef)}
                 >
-                        <header>
-                            <h2>이번 주 업적 1위</h2>
-                        </header>
-                        <div className="dojang-main">
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div>
+                    <header>
+                        <h2>이번 주 업적 1위</h2>
+                    </header>
+                    <div className="dojang-main">
+                        <img
+                            className="character-image"
+                            alt="character"
+                            loading="lazy"
+                        />
+                        <div>
                             <div className="level">
 
                             </div>
@@ -158,19 +209,19 @@ export default function Card() {
                 <section
                     className="container union"
                     ref={unionRef}
-                    onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>,unionRef)}
+                    onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, unionRef)}
                     onMouseLeave={() => MouseLeave(unionRef)}
                 >
-                        <header>
-                            <h2>이번 주 무릉도장 1위</h2>
-                        </header>
-                        <div className="dojang-main">
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div>
+                    <header>
+                        <h2>이번 주 무릉도장 1위</h2>
+                    </header>
+                    <div className="dojang-main">
+                        <img
+                            className="character-image"
+                            alt="character"
+                            loading="lazy"
+                        />
+                        <div>
                             <div className="level">
 
                             </div>
@@ -193,7 +244,6 @@ export default function Card() {
                     <div className="more">상세 보기</div>
                 </section>
             </section>
-            
         </div>
     );
 }

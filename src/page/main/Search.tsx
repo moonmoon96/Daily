@@ -18,8 +18,8 @@ export default function Search () {
         if(characterName) {
             try {
                 await dispatch(fetchOcid(characterName));
-            } catch (error) {
-                console.error(error);
+            } catch (err) {
+                console.log(err);
             }
         }
     }
