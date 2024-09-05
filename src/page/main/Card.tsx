@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { ocid } from "../../api/character/Ocid";
 import { dojang } from "../../api/rank/Dojang";
 import { DojangData } from "../../api/Types";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/Store";
-import { fetchOcid } from "../../store/OcidSlice";
 import { basic } from "../../api/character/Basic";
 
 export default function Card() {
@@ -51,9 +48,6 @@ export default function Card() {
     const [dojangData, setDojangData] = useState<DojangData[]>([]);
     const [characterImage, setCharacterImage] = useState();
 
-    const dispatch = useDispatch<AppDispatch>();
-    const ocid = useSelector((state: RootState) => state.ocid.value);
-    const ocidStatus = useSelector((state: RootState) => state.ocid.status);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -67,12 +61,11 @@ export default function Card() {
 
                 if (character_name) {
                     try {
-                        await dispatch(fetchOcid(character_name));
-                        if (ocid && ocidStatus === 'succeeded') {
-                            const basic_data = await basic(ocid);
-                            setCharacterImage(basic_data.character_image);
-                            console.log(characterImage);
-                        }
+                        const result = await ocid(character_name);
+
+                        const basic_data = await basic(result);
+                        setCharacterImage(basic_data.character_image);
+                        
                     } catch (err) {
                         console.log(err);
                     }
@@ -84,9 +77,12 @@ export default function Card() {
             }
         }
 
-        fetchData();
+        //fetchData();
     }, []);
 
+    if (loading) {
+        return <div>Loading...</div>;
+    }
     return (
         <div>
             <section className="home-main-first">
@@ -100,35 +96,42 @@ export default function Card() {
                         <h2>이번 주 무릉도장 1위</h2>
                     </header>
                     <div className="dojang-main">
-                        <img
-                            className="character-image"
-                            src={characterImage}
-                            alt="character"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div className="level">
+                        {dojangData.length > 0 && (
+                            <>
+                                <img
+                                    className="character-image"
+                                    src={characterImage}
+                                    alt="character"
+                                    loading="lazy"
+                                />
                                 <div>
-                                    <b>{dojangData[0].dojang_floor}층</b>
+                                    <div className="level">
+                                        <div>
+                                            <b>{dojangData[0].dojang_floor}층</b>
+                                        </div>
+                                        <span>{dojangData[0].dojang_time_record}</span>
+                                    </div>
+                                    <img
+                                        className="character-image"
+                                        src={characterImage}
+                                        alt="character"
+                                        loading="lazy"
+                                    />
+                                    <div className="info">
+                                        <div className="player">
+                                            <span className="name">{dojangData[0].character_name}</span>
+                                            <span className="level">Lv. {dojangData[0].character_level}</span>
+                                        </div>
+                                        <div className="job">
+                                            {dojangData[0].character_class}
+                                        </div>
+                                    </div>
                                 </div>
-                                <span>{dojangData[0].dojang_time_record}</span>
-                            </div>
-                            <img
-                                className="character-image"
-                                src={characterImage}
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div className="info">
-                                <div className="player">
-                                    <span className="name">{dojangData[0].character_name}</span>
-                                    <span className="level">Lv. {dojangData[0].character_level}</span>
-                                </div>
-                                <div className="job">
-                                    {dojangData[0].character_class}
-                                </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
+                        {dojangData.length === 0 && (
+                            <div>데이터가 없습니다.</div>
+                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>

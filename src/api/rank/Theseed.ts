@@ -1,7 +1,9 @@
-export async function basic(ocid : string) {
+import { baseDate } from "../../utils/Date";
+
+export async function theseed() {
     try {
         const apiKey = process.env.REACT_APP_API_KEY;
-        const urlString = "https://open.api.nexon.com/maplestory/v1/character/basic?ocid=" + ocid;
+        const urlString = "https://open.api.nexon.com/maplestory/v1/ranking/theseed?date=" + baseDate;
 
 
         if (!apiKey) {
@@ -13,9 +15,11 @@ export async function basic(ocid : string) {
                 "x-nxopen-api-key": apiKey
             }
         });
-        const basic_data = await response.json();
+        const result = await response.json();
 
-        return basic_data;
+        const theseed_data = result.ranking;
+
+        return theseed_data;
 
     } catch (error) {
         console.error(error);
