@@ -37,12 +37,28 @@ export default function Card() {
                 rotateX = 4 / 30 * y - 19;
             }
             //console.log(`MouseMove - x: ${x}, y: ${y}`);
+            const overlay = ref
+            .current.querySelector('.overlay') as HTMLDivElement;
+            if (overlay) {
+                 // 마우스가 요소 안에 있는지 체크
+                const isHovered = e.clientX >= rect.left && e.clientX <= rect.right &&
+                e.clientY >= rect.top && e.clientY <= rect.bottom;
+
+                // hover 상태에 따라 스타일 변경
+                overlay.style.backgroundPosition = `${x / 6 + y / 6}%`;
+                overlay.style.visibility = isHovered ? 'visible' : 'hidden';
+                overlay.style.opacity = isHovered ? '1' : '0';
+            }
             ref.current.style.transform = `perspective(400px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         }
     };
 
     const MouseLeave = (ref: React.RefObject<HTMLDivElement>) => {
         if (ref.current) {
+            const overlay = ref.current.querySelector('.overlay') as HTMLDivElement;
+            if (overlay) {
+                overlay.style.visibility = 'hidden';
+            }
             ref.current.style.transform = 'perspective(400px) rotateX(0deg) rotateY(0deg)';
         }
     };
@@ -114,6 +130,7 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, dojangRef)}
                     onMouseLeave={() => MouseLeave(dojangRef)}
                 >
+                    <div className="overlay"></div>
                     <header>
                         <h2>이번 주 무릉도장 1위</h2>
                     </header>
@@ -163,6 +180,7 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, theseedRef)}
                     onMouseLeave={() => MouseLeave(theseedRef)}
                 >
+                    <div className="overlay"></div>
                     <header>
                         <h2>이번 주 더 시드 1위</h2>
                     </header>

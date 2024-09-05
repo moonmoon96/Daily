@@ -608,18 +608,18 @@ img {
     margin-bottom: 8px;
 }
 
-.dojnag-main > div > .level > div{
+.dojang-main > div > .level > div{
     display: flex;
     align-items: center;
     gap: 4px;
 }
 
-.dojnag-main > div > .level > div > b{
+.dojang-main > div > .level > div > b{
     font-size: 16px;
     font-weight: 600;
 }
 
-.dojnag-main > div > .level > div > span{
+.dojang-main > div > .level > span{
     font-size: 12px;
     font-weight: 400;
     color: rgb(132, 137, 153);
@@ -650,6 +650,11 @@ img {
 
 .dojang-main > div > .info > .player > span.name{
     font-weight: 600;
+}
+
+.dojang-main > div > .info > .job{
+    font-size: 12px;
+    color: rgb(132, 137, 153);
 }
 
 .home-main-section{
@@ -876,6 +881,10 @@ img {
     white-space: nowrap;
 }
 
+.container {
+    position: relative;
+}
+
 @media (min-width: 768px) {
     .header-top-content {
         flex-direction: row;
@@ -963,12 +972,12 @@ img {
         row-gap: 6px;
     }
 
-    .dojnag-main > div > .level > div > b{
+    .dojang-main > div > .level > div > b{
         font-size: 20px;
         line-height: 20px;
     }
 
-    .dojnag-main > div > .level > div > span{
+    .dojang-main > div > .level > span{
         font-size: 13px;
         font-weight: 400;
         line-height: 13px;
@@ -1011,5 +1020,23 @@ img {
 
     .home-main-first{
         grid-template-columns: repeat(4, 1fr);
+    }
+
+    .overlay{
+        visibility: hidden;
+        opacity: 0;
+        position: absolute;
+        width: 255px;
+        height: 284px;
+        background: linear-gradient(105deg,
+            transparent 40%,
+            rgba(255, 219, 112, 0.8) 45%,
+            rgba(132, 50, 255, 0.6) 50%,
+            transparent 54%);
+        filter: brightness(1.2) opacity(0.8);
+        mix-blend-mode: color-dodge;
+        background-size: 150% 150%;
+        background-position: 100%;
+        transition: all 0.1s;
     }
 }
