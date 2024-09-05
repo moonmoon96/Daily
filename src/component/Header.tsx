@@ -39,7 +39,9 @@ export default function Header () {
                 <div className="header-top">
                     <div className="header-top-content">
                         <div className="header-top-left">
-                            <p className="header-logo">Daily</p>
+                            <div>
+                                <div className="logo-title">maple</div>
+                            </div>
                         </div>
                         <div className="divider"></div>
                         <div className="header-top-right">

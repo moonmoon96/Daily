@@ -20,7 +20,9 @@ function Home () {
                             <img className="home-bg-mobile" alt="banner" src={banner} />
                         </div>
                         <a href="/">
-                            <img className="logo" alt="logo" />
+                            <div className="logo">
+                                
+                            </div>
                         </a>
                         <div className="home-search">
                             <Search />
