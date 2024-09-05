@@ -4,6 +4,7 @@ import { basic } from "../../api/character/Basic";
 import { dojang } from "../../api/rank/Dojang";
 import { theseed } from "../../api/rank/Theseed";
 import { DojangData, TheseedData } from "../../api/Types";
+import { formatTime } from "../../utils/Time";
 
 export default function Card() {
 
@@ -130,7 +131,7 @@ export default function Card() {
                                         <div>
                                             <b>{dojangData[0].dojang_floor}층</b>
                                         </div>
-                                        <span>{dojangData[0].dojang_time_record}</span>
+                                        <span>{formatTime(dojangData[0].dojang_time_record)}</span>
                                     </div>
                                     <img
                                         className="character-image"
@@ -179,7 +180,7 @@ export default function Card() {
                                         <div>
                                             <b>{theseedData[0].theseed_floor}층</b>
                                         </div>
-                                        <span>{theseedData[0].theseed_time_record}</span>
+                                        <span>{formatTime(theseedData[0].theseed_time_record)}</span>
                                     </div>
                                     <img
                                         className="character-image"
