@@ -44,3 +44,17 @@ export interface DojangData {
     world_name: string;
     character_image: string;
 }
+
+export interface TheseedData{
+    date: string;
+    ranking: number;
+    theseed_floor: number;
+    theseed_time_record: number;
+    character_name: string;
+    character_level: number;
+    character_class: string;
+    class_name: string;
+    sub_class_name: string;
+    world_name: string;
+    character_image: string;
+}

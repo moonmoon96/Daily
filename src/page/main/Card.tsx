@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { ocid } from "../../api/character/Ocid";
-import { dojang } from "../../api/rank/Dojang";
-import { DojangData } from "../../api/Types";
 import { basic } from "../../api/character/Basic";
+import { dojang } from "../../api/rank/Dojang";
+import { theseed } from "../../api/rank/Theseed";
+import { DojangData, TheseedData } from "../../api/Types";
 
 export default function Card() {
 
@@ -46,7 +47,9 @@ export default function Card() {
     };
 
     const [dojangData, setDojangData] = useState<DojangData[]>([]);
-    const [characterImage, setCharacterImage] = useState();
+    const [theseedData, setTheSeedData] = useState<TheseedData[]>([]);
+    const [dojangCharacterImage, setDojangCharacterImage] = useState();
+    const [theseedCharacterImage, setTheseedCharacterImage] = useState();
 
     const [loading, setLoading] = useState(true);
 
@@ -54,22 +57,40 @@ export default function Card() {
         const fetchData = async () => {
             setLoading(true); // 데이터 로딩 시작
             try {
-                const result = await dojang();
-                setDojangData(result);
+                const dojang_result = await dojang();
+                setDojangData(dojang_result);
 
-                const character_name = result[0]?.character_name; // data가 존재하는지 체크
+                const dojang_character_name = dojang_result[0]?.character_name;
 
-                if (character_name) {
+                if (dojang_character_name) {
                     try {
-                        const result = await ocid(character_name);
+                        const result = await ocid(dojang_character_name);
 
                         const basic_data = await basic(result);
-                        setCharacterImage(basic_data.character_image);
-                        
+                        setDojangCharacterImage(basic_data.character_image);
+
                     } catch (err) {
                         console.log(err);
                     }
                 }
+
+                const theseed_result = await theseed();
+                setTheSeedData(theseed_result);
+
+                const theseed_character_name = theseed_result[0]?.character_name;
+
+                if (theseed_character_name) {
+                    try {
+                        const result = await ocid(theseed_character_name);
+
+                        const basic_data = await basic(result);
+                        setTheseedCharacterImage(basic_data.character_image);
+
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+
             } catch (err) {
                 console.log(err);
             } finally {
@@ -100,7 +121,7 @@ export default function Card() {
                             <>
                                 <img
                                     className="character-image"
-                                    src={characterImage}
+                                    src={dojangCharacterImage}
                                     alt="character"
                                     loading="lazy"
                                 />
@@ -113,17 +134,17 @@ export default function Card() {
                                     </div>
                                     <img
                                         className="character-image"
-                                        src={characterImage}
+                                        src={dojangCharacterImage}
                                         alt="character"
                                         loading="lazy"
                                     />
                                     <div className="info">
                                         <div className="player">
                                             <span className="name">{dojangData[0].character_name}</span>
-                                            <span className="level">Lv. {dojangData[0].character_level}</span>
+                                            <span className="level">Lv.{dojangData[0].character_level}</span>
                                         </div>
                                         <div className="job">
-                                            {dojangData[0].character_class}
+                                            {dojangData[0].sub_class_name || dojangData[0].class_name}
                                         </div>
                                     </div>
                                 </div>
@@ -145,30 +166,42 @@ export default function Card() {
                         <h2>이번 주 더 시드 1위</h2>
                     </header>
                     <div className="dojang-main">
-                        <img
-                            className="character-image"
-                            alt="character"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div className="level">
-
-                            </div>
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div className="info">
-                                <div className="player">
-                                    <span className="name"></span>
-                                    <span className="level">Lv. </span>
+                        {theseedData.length > 0 && (
+                            <>
+                                <img
+                                    className="character-image"
+                                    src={theseedCharacterImage}
+                                    alt="character"
+                                    loading="lazy"
+                                />
+                                <div>
+                                    <div className="level">
+                                        <div>
+                                            <b>{theseedData[0].theseed_floor}층</b>
+                                        </div>
+                                        <span>{theseedData[0].theseed_time_record}</span>
+                                    </div>
+                                    <img
+                                        className="character-image"
+                                        src={theseedCharacterImage}
+                                        alt="character"
+                                        loading="lazy"
+                                    />
+                                    <div className="info">
+                                        <div className="player">
+                                            <span className="name">{theseedData[0].character_name}</span>
+                                            <span className="level">Lv.{theseedData[0].character_level}</span>
+                                        </div>
+                                        <div className="job">
+                                            {theseedData[0].sub_class_name || theseedData[0].class_name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="job">
-
-                                </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
+                        {dojangData.length === 0 && (
+                            <div>데이터가 없습니다.</div>
+                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>
