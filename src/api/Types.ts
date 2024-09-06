@@ -62,8 +62,21 @@ export interface TheseedData {
 export interface AchievementData {
     date: string;
     ranking: number;
-    trophy_scroe: number;
+    trophy_score: number;
     trophy_grade: string;
+    character_name: string;
+    character_level: number;
+    character_class: string;
+    class_name: string;
+    sub_class_name: string;
+    world_name: string;
+}
+
+export interface UnionData {
+    date: string;
+    ranking: number;
+    union_level: number;
+    union_power: number;
     character_name: string;
     character_level: number;
     character_class: string;

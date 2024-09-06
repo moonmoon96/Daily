@@ -3,7 +3,7 @@ import { baseDate } from "../../utils/Date";
 export async function achievement() {
     try {
         const apiKey = process.env.REACT_APP_API_KEY;
-        const urlString = "https://open.api.nexon.com/maplestory/v1/ranking/achievement?date" + baseDate;
+        const urlString = "https://open.api.nexon.com/maplestory/v1/ranking/achievement?date=" + baseDate;
 
 
         if (!apiKey) {
@@ -18,6 +18,8 @@ export async function achievement() {
         const result = await response.json();
 
         const achievement_data = result.ranking;
+
+        console.log(achievement_data[0].trophy_score);
 
         return achievement_data;
 

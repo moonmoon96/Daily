@@ -3,9 +3,10 @@ import { ocid } from "../../api/character/Ocid";
 import { basic } from "../../api/character/Basic";
 import { dojang } from "../../api/rank/Dojang";
 import { theseed } from "../../api/rank/Theseed";
-import { AchievementData, DojangData, TheseedData } from "../../api/Types";
+import { AchievementData, DojangData, TheseedData, UnionData } from "../../api/Types";
 import { formatTime } from "../../utils/Time";
 import { achievement } from "../../api/rank/Achievement";
+import { union } from "../../api/rank/Union";
 
 export default function Card() {
 
@@ -67,10 +68,12 @@ export default function Card() {
     const [dojangData, setDojangData] = useState<DojangData[]>([]);
     const [theseedData, setTheSeedData] = useState<TheseedData[]>([]);
     const [achievementData, setAchievementData] = useState<AchievementData[]>([]);
+    const [unionData, setUnionData] = useState<UnionData[]>([]);
 
     const [dojangCharacterImage, setDojangCharacterImage] = useState();
     const [theseedCharacterImage, setTheseedCharacterImage] = useState();
     const [achievementCharacterImage, setAchievementCharacterImage] = useState();
+    const [unionCharacterImage, setUnionCharacterImage] = useState();
 
     const [loading, setLoading] = useState(true);
 
@@ -128,6 +131,24 @@ export default function Card() {
                         console.log(err);
                     }
                 }
+
+                const union_result = await union();
+                setUnionData(union_result);
+
+                const union_character_name = union_result[0]?.character_name;
+
+                if (union_character_name) {
+                    try {
+                        const result = await ocid(union_character_name);
+
+                        const basic_data = await basic(result);
+                        setUnionCharacterImage(basic_data.character_image);
+
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+
             } catch (err) {
                 console.log(err);
             } finally {
@@ -135,7 +156,7 @@ export default function Card() {
             }
         }
 
-        //fetchData();
+        fetchData();
     }, []);
 
     if (loading) {
@@ -188,9 +209,6 @@ export default function Card() {
                                 </div>
                             </>
                         )}
-                        {dojangData.length === 0 && (
-                            <div>데이터가 없습니다.</div>
-                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>
@@ -238,9 +256,6 @@ export default function Card() {
                                 </div>
                             </>
                         )}
-                        {dojangData.length === 0 && (
-                            <div>데이터가 없습니다.</div>
-                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>
@@ -250,6 +265,7 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, achievementRef)}
                     onMouseLeave={() => MouseLeave(achievementRef)}
                 >
+                    <div className="overlay"></div>
                     <header>
                         <h2>이번 주 업적 1위</h2>
                     </header>
@@ -267,7 +283,7 @@ export default function Card() {
                                         <div>
                                             <b>{achievementData[0].trophy_grade}</b>
                                         </div>
-                                        <span>{achievementData[0].trophy_scroe}</span>
+                                        <span>{achievementData[0].trophy_score}</span>
                                     </div>
                                     <img
                                         className="character-image"
@@ -287,9 +303,6 @@ export default function Card() {
                                 </div>
                             </>
                         )}
-                        {dojangData.length === 0 && (
-                            <div>데이터가 없습니다.</div>
-                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>
@@ -299,34 +312,44 @@ export default function Card() {
                     onMouseMove={(e) => MouseMove(e as React.MouseEvent<HTMLDivElement>, unionRef)}
                     onMouseLeave={() => MouseLeave(unionRef)}
                 >
+                    <div className="overlay"></div>
                     <header>
-                        <h2>이번 주 무릉도장 1위</h2>
+                        <h2>이번 주 유니온 1위</h2>
                     </header>
                     <div className="dojang-main">
-                        <img
-                            className="character-image"
-                            alt="character"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div className="level">
-
-                            </div>
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div className="info">
-                                <div className="player">
-                                    <span className="name"></span>
-                                    <span className="level">Lv. </span>
+                        {unionData.length > 0 && (
+                            <>
+                                <img
+                                    className="character-image"
+                                    src={unionCharacterImage}
+                                    alt="character"
+                                    loading="lazy"
+                                />
+                                <div>
+                                    <div className="level">
+                                        <div>
+                                            <b>{unionData[0].union_level}</b>
+                                        </div>
+                                        <span>{unionData[0].union_power}</span>
+                                    </div>
+                                    <img
+                                        className="character-image"
+                                        src={unionCharacterImage}
+                                        alt="character"
+                                        loading="lazy"
+                                    />
+                                    <div className="info">
+                                        <div className="player">
+                                            <span className="name">{unionData[0].character_name}</span>
+                                            <span className="level">Lv.{unionData[0].character_level} </span>
+                                        </div>
+                                        <div className="job">
+                                            {unionData[0].sub_class_name || unionData[0].class_name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="job">
-
-                                </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>
