@@ -3,8 +3,9 @@ import { ocid } from "../../api/character/Ocid";
 import { basic } from "../../api/character/Basic";
 import { dojang } from "../../api/rank/Dojang";
 import { theseed } from "../../api/rank/Theseed";
-import { DojangData, TheseedData } from "../../api/Types";
+import { AchievementData, DojangData, TheseedData } from "../../api/Types";
 import { formatTime } from "../../utils/Time";
+import { achievement } from "../../api/rank/Achievement";
 
 export default function Card() {
 
@@ -38,11 +39,11 @@ export default function Card() {
             }
             //console.log(`MouseMove - x: ${x}, y: ${y}`);
             const overlay = ref
-            .current.querySelector('.overlay') as HTMLDivElement;
+                .current.querySelector('.overlay') as HTMLDivElement;
             if (overlay) {
-                 // 마우스가 요소 안에 있는지 체크
+                // 마우스가 요소 안에 있는지 체크
                 const isHovered = e.clientX >= rect.left && e.clientX <= rect.right &&
-                e.clientY >= rect.top && e.clientY <= rect.bottom;
+                    e.clientY >= rect.top && e.clientY <= rect.bottom;
 
                 // hover 상태에 따라 스타일 변경
                 overlay.style.backgroundPosition = `${x / 6 + y / 6}%`;
@@ -65,8 +66,11 @@ export default function Card() {
 
     const [dojangData, setDojangData] = useState<DojangData[]>([]);
     const [theseedData, setTheSeedData] = useState<TheseedData[]>([]);
+    const [achievementData, setAchievementData] = useState<AchievementData[]>([]);
+
     const [dojangCharacterImage, setDojangCharacterImage] = useState();
     const [theseedCharacterImage, setTheseedCharacterImage] = useState();
+    const [achievementCharacterImage, setAchievementCharacterImage] = useState();
 
     const [loading, setLoading] = useState(true);
 
@@ -108,6 +112,22 @@ export default function Card() {
                     }
                 }
 
+                const achievement_result = await achievement();
+                setAchievementData(achievement_result);
+
+                const achievement_character_name = achievement_result[0]?.character_name;
+
+                if (achievement_character_name) {
+                    try {
+                        const result = await ocid(achievement_character_name);
+
+                        const basic_data = await basic(result);
+                        setAchievementCharacterImage(basic_data.character_image);
+
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
             } catch (err) {
                 console.log(err);
             } finally {
@@ -115,7 +135,7 @@ export default function Card() {
             }
         }
 
-        fetchData();
+        //fetchData();
     }, []);
 
     if (loading) {
@@ -234,30 +254,42 @@ export default function Card() {
                         <h2>이번 주 업적 1위</h2>
                     </header>
                     <div className="dojang-main">
-                        <img
-                            className="character-image"
-                            alt="character"
-                            loading="lazy"
-                        />
-                        <div>
-                            <div className="level">
-
-                            </div>
-                            <img
-                                className="character-image"
-                                alt="character"
-                                loading="lazy"
-                            />
-                            <div className="info">
-                                <div className="player">
-                                    <span className="name"></span>
-                                    <span className="level">Lv. </span>
+                        {achievementData.length > 0 && (
+                            <>
+                                <img
+                                    className="character-image"
+                                    src={achievementCharacterImage}
+                                    alt="character"
+                                    loading="lazy"
+                                />
+                                <div>
+                                    <div className="level">
+                                        <div>
+                                            <b>{achievementData[0].trophy_grade}</b>
+                                        </div>
+                                        <span>{achievementData[0].trophy_scroe}</span>
+                                    </div>
+                                    <img
+                                        className="character-image"
+                                        src={achievementCharacterImage}
+                                        alt="character"
+                                        loading="lazy"
+                                    />
+                                    <div className="info">
+                                        <div className="player">
+                                            <span className="name">{achievementData[0].character_name}</span>
+                                            <span className="level">Lv.{achievementData[0].character_level} </span>
+                                        </div>
+                                        <div className="job">
+                                            {achievementData[0].sub_class_name || achievementData[0].class_name}
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="job">
-
-                                </div>
-                            </div>
-                        </div>
+                            </>
+                        )}
+                        {dojangData.length === 0 && (
+                            <div>데이터가 없습니다.</div>
+                        )}
                     </div>
                     <div className="more">상세 보기</div>
                 </section>

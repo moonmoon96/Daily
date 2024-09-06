@@ -45,7 +45,7 @@ export interface DojangData {
     character_image: string;
 }
 
-export interface TheseedData{
+export interface TheseedData {
     date: string;
     ranking: number;
     theseed_floor: number;
@@ -57,4 +57,17 @@ export interface TheseedData{
     sub_class_name: string;
     world_name: string;
     character_image: string;
+}
+
+export interface AchievementData {
+    date: string;
+    ranking: number;
+    trophy_scroe: number;
+    trophy_grade: string;
+    character_name: string;
+    character_level: number;
+    character_class: string;
+    class_name: string;
+    sub_class_name: string;
+    world_name: string;
 }
