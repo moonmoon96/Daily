@@ -84,8 +84,9 @@ img {
 .header-top-left > div >.logo-title{
     font-family: neon;
     color: #426DFB;
-    font-size: 5vw;
-    text-shadow: 0 0 3vw #2356FF;
+    cursor: pointer;
+    font-size: 49.7px;
+    text-shadow: 0 0 29.82px #2356FF;
     animation: flux 2s linear infinite;
     -moz-animation: flux 2s linear infinite;
     -webkit-animation: flux 2s linear infinite;
@@ -95,14 +96,14 @@ img {
 @keyframes flux {
     0%,
     100% {
-      text-shadow: 0 0 1vw #1041FF, 0 0 3vw #1041FF, 0 0 10vw #1041FF, 0 0 10vw #1041FF, 0 0 .4vw #8BFDFE, .5vw .5vw .1vw #147280;
+      text-shadow: 0 0 9.94px #1041FF, 0 0 29.82px #1041FF, 0 0 90.94px #1041FF, 0 0 90.94px #1041FF, 0 0 3.976px #8BFDFE, 4.97px 4.97px 0.994px #147280;
       color: #28D7FE;
     }
     50% {
-      text-shadow: 0 0 .5vw #082180, 0 0 1.5vw #082180, 0 0 5vw #082180, 0 0 5vw #082180, 0 0 .2vw #082180, .5vw .5vw .1vw #0A3940;
+      text-shadow: 0 0 4.97px #082180, 0 0 14.91px #082180, 0 0 49.7px #082180, 0 0 49.7px #082180, 0 0 1.988px #082180, 4.97px 4.97px 0.994px #0A3940;
       color: #146C80;
     }
-  }
+}
 
 .header-logo{
     display: inline-flex;
@@ -323,7 +324,7 @@ img {
 
 .home-searchform{
     z-index: 2;
-    border: 1px solid rgb(92, 184, 92);
+    border: 1px solid #426DFB;
     background: rgb(22, 22, 24);
     border-radius: 4px;
     padding: 3px 11px;
@@ -917,6 +918,52 @@ img {
 
 .container {
     position: relative;
+}
+
+@media (max-width: 374px) {
+    .header-top-left > div >.logo-title{
+        font-family: neon;
+        color: #426DFB;
+        cursor: pointer;
+        font-size: 13px;
+        text-shadow: 0 0 29.82px #2356FF;
+        animation: flux 2s linear infinite;
+        -moz-animation: flux 2s linear infinite;
+        -webkit-animation: flux 2s linear infinite;
+        -o-animation: flux 2s linear infinite;
+    }
+}
+
+@media (min-width: 375px) and (max-width: 415px){
+    
+    .header-top-left > div >.logo-title{
+        font-family: neon;
+        color: #426DFB;
+        cursor: pointer;
+        font-size: 18px;
+        text-shadow: 0 0 29.82px #2356FF;
+        animation: flux 2s linear infinite;
+        -moz-animation: flux 2s linear infinite;
+        -webkit-animation: flux 2s linear infinite;
+        -o-animation: flux 2s linear infinite;
+    }
+
+}
+
+@media (min-width: 416px) and (max-width: 482px){
+    
+    .header-top-left > div >.logo-title{
+        font-family: neon;
+        color: #426DFB;
+        cursor: pointer;
+        font-size: 30px;
+        text-shadow: 0 0 29.82px #2356FF;
+        animation: flux 2s linear infinite;
+        -moz-animation: flux 2s linear infinite;
+        -webkit-animation: flux 2s linear infinite;
+        -o-animation: flux 2s linear infinite;
+    }
+    
 }
 
 @media (min-width: 768px) {
