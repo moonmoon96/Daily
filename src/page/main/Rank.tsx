@@ -7,19 +7,19 @@ export default function Rank() {
 
     const [rank, setRank] = useState<RankData[]>([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const result = await overall(); 
-    //             setRank(result);
-    //             console.log(rank);
-    //         } catch (err) {
-    //             console.log(err)
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await overall(); 
+                setRank(result);
+                console.log(rank);
+            } catch (err) {
+                console.log(err)
+            }
+        };
 
-    //     fetchData();
-    // }, []);
+        //fetchData();
+    }, []);
 
     return (
         <article className="home-main-article">

@@ -920,6 +920,340 @@ img {
     position: relative;
 }
 
+.char{
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    max-width: 1200px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin: 0px auto;
+}
+
+.char-top{
+    width: 100%;
+    margin-left: auto;
+    box-sizing: border-box;
+    margin-right: auto;
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px; 
+}
+
+.char-top .start{
+    position: relative;
+    min-height: 320px;
+    height: 320px;
+    width: 100%;
+    background-color: rgb(26, 29, 34);
+    overflow: hidden;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.char-top .date{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    bottom: 0px;
+    right: 2px;
+    z-index: 2;
+}
+
+.char-top .date > span {
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    line-height: 1.66;
+    color: rgb(198, 198, 198);
+    font-size: 11px;
+}
+
+.char-top .bg{
+    width: 500px;
+    height: 320px;
+    position: absolute;
+    right: -10px;
+}
+
+.char-top .bg > div {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 48rem;
+    height: 48rem;
+    background-color: rgba(68, 170, 219, 0.8);
+    mix-blend-mode: screen;
+    transition: all 1s ease-out 0s;
+    mask-image: radial-gradient(50% 50% at 50% 50%, rgb(255, 255, 255) 0%, rgba(255, 105, 0, 0) 100%);
+}
+
+.char-top .bg > div > img{
+    position: absolute;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+}
+
+.char-top .section{
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: wrap;
+    margin-top: -16px;
+    width: calc(100% + 16px);
+    margin-left: -16px;
+    z-index: 10;
+}
+
+.char-top .char{
+    position: absolute;
+    object-fit: cover;
+    user-select: none;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+}
+
+.char-top .section > .item{
+    padding-left: 16px;
+    padding-top: 16px;
+}
+
+.char-top .charimg{
+    display: flex;
+    flex-direction: column;
+}
+
+.char-top .aximg{
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    color: #1c1f26;
+}
+
+.char-top .aximg > div{
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+}
+
+.char-top .aximg > div > img{
+    object-fit: cover;
+    height: 200px;
+    aspect-ratio: auto 270 / 200;
+    width: 270px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.char-top .aximgdate{
+    margin-top: 8px;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.char-top .aximgdate > button {
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    background-color: transparent;
+    outline: 0px;
+    border: 0px rgb(198, 198, 198);
+    margin: 0px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.75;
+    text-transform: uppercase;
+    min-width: 64px;
+    padding: 6px 16px;
+    border-radius: var(--mui-shape-borderRadius);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    color: rgb(198, 198, 198);
+}
+
+.char-top .aximgdate > svg {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: 1.25rem;
+}
+
+.char-top .info{
+    box-sizing: border-box;
+    margin: 0px;
+    flex-direction: row;
+    flex-basis: 50%;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    max-width: 50%;
+}
+
+.char-top .box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+.char-top .world{
+    margin-bottom: 8px;
+    display: flex;
+    gap: 5px;
+}
+
+.char-top .world > div{
+    max-width: 100%;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 0.8125rem;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 24px;
+    color: var(--mui-palette-text-primary);
+    background-color: var(--mui-palette-action-selected);
+    border-radius: 16px;
+    white-space: nowrap;
+    transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    cursor: unset;
+    outline: 0px;
+    text-decoration: none;
+    border: 0px;
+    padding: 0px;
+    vertical-align: middle;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.char-top .world > div > span {
+    color: rgb(255, 255, 255);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 8px;
+    padding-right: 8px;
+    white-space: nowrap;
+}
+
+.char-top .name{
+    box-sizing: inherit;
+}
+
+.char-top .title{
+    display: flex;
+    flex-direction: row;
+    -webkit-box-align: end;
+    align-items: end;
+}
+
+.char-top .charname{
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    -webkit-box-align: end;
+    align-items: end;
+}
+
+.char-top .charname > img{
+    width: 20px;
+    aspect-ratio: auto 20 / 20;
+    height: 20px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.char-top .charname > h4{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.235;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
+.char-top .title > button{
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    position: relative;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0px;
+    margin: 0px 0px 0px 4px;
+    cursor: pointer;
+    user-select: none;
+    vertical-align: middle;
+    appearance: none;
+    text-decoration: none;
+    text-align: center;
+    flex: 0 0 auto;
+    font-size: 1.5rem;
+    padding: 8px;
+    overflow: visible;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    border: 1px solid gray;
+    width: 24px;
+    height: 24px;
+}
+
+.char-top .title > svg{
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    font-size: 1.25rem;
+    color: gray;
+}
+
+.char-top .charspec{
+    display: flex;
+    flex-direction: column;
+}
+
+.char-top .level{
+    margin-top: 16px;
+    display: flex;
+    flex-flow: wrap;
+    gap: 8px 16px;
+}
+
 @media (max-width: 374px) {
     .header-top-left > div >.logo-title{
         font-family: neon;
@@ -964,6 +1298,27 @@ img {
         -o-animation: flux 2s linear infinite;
     }
     
+}
+
+@media (min-width: 600px) {
+    .char-top{
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .char-top .char{
+        flex-basis: 50%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 50%;
+    }
+
+    .char-top .info{
+        flex-basis: 50%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 50%;
+    }
 }
 
 @media (min-width: 768px) {
@@ -1087,6 +1442,23 @@ img {
     .home-article-table .responsive{
         display: flex !important;
     }
+    
+}
+
+@media (min-width: 900px) {
+    .char-top .char{
+        flex-basis: 25%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 25%;
+    }
+
+    .char-top .info{
+        flex-basis: 41.6667%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 41.6667%;
+    }
 }
 
 @media (min-width: 1144px) {
@@ -1119,5 +1491,41 @@ img {
         background-size: 150% 150%;
         background-position: 100%;
         transition: all 0.1s;
+    }
+}
+
+@media (min-width: 1200px) {
+    .char-top{
+        max-width: 1200px; 
+    }
+
+    .char-top .char{
+        flex-basis: 25%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 25%;
+    }
+
+    .char-top .info{
+        flex-basis: 41.6667%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 41.6667%;
+    }
+}
+
+@media (min-width: 1536px) {
+    .char-top .char{
+        flex-basis: 25%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 25%;
+    }
+
+    .char-top .info{
+        flex-basis: 41.6667%;
+        -webkit-box-flex: 0;
+        flex-grow: 0;
+        max-width: 41.6667%;
     }
 }

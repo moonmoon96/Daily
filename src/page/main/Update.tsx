@@ -6,19 +6,19 @@ export default function Update () {
     
     const [update, setUpdate] = useState<UpdateData[]>([]);
 
-    // useEffect(() => {
-    //     const fetchData = async () => {
-    //         try {
-    //             const result = await updateData();
-    //             setUpdate(result);
-    //             console.log(update);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const result = await updateData();
+                setUpdate(result);
+                console.log(update);
+            } catch (err) {
+                console.log(err);
+            }
+        };
 
-    //     fetchData();
-    // }, []);
+        //fetchData();
+    }, []);
 
     return(
         <article className="home-update-article">

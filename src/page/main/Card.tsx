@@ -156,7 +156,7 @@ export default function Card() {
             }
         }
 
-        fetchData();
+        //fetchData();
     }, []);
 
     if (loading) {
