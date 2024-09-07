@@ -1247,6 +1247,51 @@ img {
     flex-direction: column;
 }
 
+.char-top .firstp{
+    margin: 8px 0px 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    color: rgb(255, 255, 255);
+}
+
+.char-top .firstp > span{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    color: rgb(198, 198, 198);
+    display: inline;
+}
+
+.char-top .firstp > a{
+    margin: 0px;
+    font: inherit;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.char-top .p{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    color: rgb(255, 255, 255);
+}
+
+.char-top .p > span{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 0.75rem;
+    line-height: 1.66;
+    color: rgb(198, 198, 198);
+    display: inline;
+}
+
 .char-top .level{
     margin-top: 16px;
     display: flex;
