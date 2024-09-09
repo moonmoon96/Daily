@@ -1299,6 +1299,29 @@ img {
     gap: 8px 16px;
 }
 
+.char-top .level > div{
+    display: flex;
+    flex-direction: column;
+}
+
+.char-top .level > div > p{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 0.875rem;
+    line-height: 1.43;
+    font-weight: 500;
+    color: rgb(198, 198, 198);
+}
+
+.char-top .level > div > h5{
+    margin: 0px;
+    font-family: "Noto Sans KR", sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.334;
+    font-weight: 500;
+    color: rgb(255, 255, 255);
+}
+
 @media (max-width: 374px) {
     .header-top-left > div >.logo-title{
         font-family: neon;
@@ -1364,6 +1387,11 @@ img {
         flex-grow: 0;
         max-width: 50%;
     }
+
+    .char-top .level > div > h5{
+        font-size: 22px;
+    }
+    
 }
 
 @media (min-width: 768px) {
