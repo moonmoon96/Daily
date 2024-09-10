@@ -1,4 +1,4 @@
-export async function item(ocid : string) {
+export async function set(ocid : string) {
     try {
         const apiKey = process.env.REACT_APP_API_KEY;
         const urlString = "https://open.api.nexon.com/maplestory/v1/character/set-effect?ocid=" + ocid;
